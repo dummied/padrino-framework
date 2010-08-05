@@ -196,9 +196,9 @@ class TestModelGenerator < Test::Unit::TestCase
   end
 
   # MONGODB
-  context "model generator using mongomapper" do
+  context "model generator using mongo_mapper" do
     should "generate model file with no properties" do
-      silence_logger { generate(:project, 'sample_project', '--root=/tmp', '--script=none', '-d=mongomapper') }
+      silence_logger { generate(:project, 'sample_project', '--root=/tmp', '--script=none', '-d=mongo_mapper') }
       silence_logger { generate(:model, 'person', '-r=/tmp/sample_project') }
       assert_match_in_file(/class Person\n\s+include MongoMapper::Document/m, '/tmp/sample_project/app/models/person.rb')
       assert_match_in_file(/# key <name>, <type>/m, '/tmp/sample_project/app/models/person.rb')
@@ -206,7 +206,7 @@ class TestModelGenerator < Test::Unit::TestCase
     end
 
     should "generate model file with given fields" do
-      silence_logger { generate(:project, 'sample_project', '--root=/tmp', '--script=none', '-d=mongomapper') }
+      silence_logger { generate(:project, 'sample_project', '--root=/tmp', '--script=none', '-d=mongo_mapper') }
       silence_logger { generate(:model, 'user', "name:string", "age:integer", "email:string", '-r=/tmp/sample_project') }
       assert_match_in_file(/class User\n\s+include MongoMapper::Document/m, '/tmp/sample_project/app/models/user.rb')
       assert_match_in_file(/key :name, String/m, '/tmp/sample_project/app/models/user.rb')

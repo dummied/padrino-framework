@@ -236,9 +236,9 @@ class TestProjectGenerator < Test::Unit::TestCase
       end
     end
 
-    should "properly generate for mongomapper" do
-      buffer = silence_logger { generate(:project, 'project.com', '--root=/tmp', '--orm=mongomapper', '--script=none') }
-      assert_match(/Applying.*?mongomapper.*?orm/, buffer)
+    should "properly generate for mongo_mapper" do
+      buffer = silence_logger { generate(:project, 'project.com', '--root=/tmp', '--orm=mongo_mapper', '--script=none') }
+      assert_match(/Applying.*?mongo_mapper.*?orm/, buffer)
       assert_match_in_file(/gem 'mongo_mapper'/, '/tmp/project.com/Gemfile')
       assert_match_in_file(/gem 'bson_ext'/, '/tmp/project.com/Gemfile')
       assert_match_in_file(/MongoMapper.database/, '/tmp/project.com/config/database.rb')
